@@ -1,68 +1,63 @@
 public class Stack {
     private int size;
-    private int capacity;
-    private Object[] stack;
+    private LinearNode head;
 
-    public Stack(int capacity) {
-        this.capacity = capacity;
-        this.stack = new Object[capacity];
+    Stack() {
         this.size = 0;
+        this.head = null;
     }
 
-    public void push(Object value) {
-        if (size == capacity) {
-            grow();
+    public void push(Object element) {
+        LinearNode node = new LinearNode(element);
+
+        if (isEmpty()) {
+            head = node;
+        } else {
+            node.setNext(head);
+            head = node;
         }
-        stack[size] = value;
         size++;
     }
 
     public Object pop() {
         if (isEmpty()) return null;
-        Object objectToReturn = stack[size - 1];
-        stack[size - 1] = null;
+        Object elementToReturn = head.getElement();
+        head = head.getNext();
         size--;
-        return objectToReturn;
-    }
-
-    private void grow() {
-        int newCapacity = capacity * 2;
-        Object[] newStack = new Object[newCapacity];
-        for (int i = 0; i < size; i++) {
-            newStack[i] = stack[i];
-        }
-        stack = newStack;
-        capacity = newCapacity;
+        return elementToReturn;
     }
 
     public Object peek() {
-        if (isEmpty()) return null;
-        return stack[size - 1];
+        if (isEmpty()) {
+            return null;
+        }
+        return head.getElement();
     }
 
     public int size() {
         return size;
     }
 
-    public boolean isEmpty() {
-        return size == 0;
-    }
+
+    public boolean isEmpty() { return size == 0; }
 
     @Override
     public String toString() {
         if (isEmpty()) {
             return "[]";
         }
+        StringBuilder stringToReturn = new StringBuilder("[");
 
-       StringBuilder stringToReturn = new StringBuilder("[");
+        LinearNode temporaryHead = head;
 
-       for (int i = 0; i < size; i++) {
-            stringToReturn.append(stack[i] + ", ");
-       }
+        for (int i = 0; i < size; i++) {
+            stringToReturn.append(temporaryHead.getElement() + ", ");
+            temporaryHead = temporaryHead.getNext();
+        }
 
-       stringToReturn.delete(stringToReturn.length() - 2, stringToReturn.length());
-       stringToReturn.append("]");
+        stringToReturn.delete(stringToReturn.length() - 2, stringToReturn.length());
+        stringToReturn.append("]");
 
-       return stringToReturn.toString();
+        return stringToReturn.toString();
     }
 }
