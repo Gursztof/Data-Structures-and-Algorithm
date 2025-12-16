@@ -14,6 +14,7 @@ public class LinkedList {
             head = tail = node;
         } else {
             node.setNext(head);
+            head.setPrevious(node);
             head = node;
         }
         size++;
@@ -33,25 +34,35 @@ public class LinkedList {
     }
 
     public Object removeFirst() {
-        if (isEmpty()) { return null; };
-
+        if (isEmpty()) { return null; }
         Object elementToReturn = head.getElement();
-        head = head.getNext();
+        if (size == 1) {
+            clear();
+            return elementToReturn;
+        } else {
+            head = head.getNext();
+            head.setPrevious(null);
+        }
         size--;
         return elementToReturn;
     }
 
     public Object removeLast() {
         if (isEmpty()) { return null; };
-
         Object elementToReturn = tail.getElement();
-        tail = tail.getPrevious();
+        if (size == 1) {
+            clear();
+            return elementToReturn;
+        } else {
+            tail = tail.getPrevious();
+            tail.setNext(null);
+        }
         size--;
         return elementToReturn;
     }
 
     public Object get(int index) {
-        if (index > size) {
+        if (index >= size) {
             return null;
         }
         LinearNode temporaryHead = head;
