@@ -1,15 +1,27 @@
 void main() {
-  Stack stack = new Stack();
+  LinkedList ll = new LinkedList();
 
-  stack.push("Joe");
-  System.out.println(stack);
-  stack.push("Joe1");
-  stack.push("Joe2");
-  System.out.println(stack);
-  System.out.println(stack.pop());
-  System.out.println(stack);
-  System.out.println(stack.peek());
-  System.out.println(stack.size());
+  ll.isEmpty();
+  ll.addFirst("Mag");
+  System.out.println(ll);
+  ll.addLast("Alan");
+  System.out.println(ll);
+  ll.addLast("George");
+  System.out.println(ll);
+  ll.addFirst("Joe");
+  System.out.println(ll);
+  System.out.println(ll.get(1));
+  System.out.println(ll.contains("George"));
+  System.out.println(ll.indexOf("Joe"));
+
+
+//  System.out.println(ll.removeLast());
+//  System.out.println(ll);
+//  System.out.println(ll.removeFirst());
+//  System.out.println(ll);
+//  System.out.println(ll.size());
+//  ll.clear();
+//  System.out.println(ll);
 
 
 }
