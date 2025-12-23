@@ -1,16 +1,22 @@
 void main() {
-  DynamicArray dyn = new DynamicArray();
+  int[] array = {1, 5, 3, 8, 2, 10};
 
-  dyn.add("Joe");
-  System.out.println(dyn);
-  dyn.add("Mag");
-  dyn.add("Alan");
-  System.out.println(dyn);
-  dyn.remove(2);
-  System.out.println(dyn);
-  dyn.removeLast();
-  System.out.println(dyn);
-  System.out.println(dyn.get(0));
+  BinarySearch bs = new BinarySearch(array);
+
+    System.out.println(bs);
+
+
+  System.out.println(bs.search(2));
+//  dyn.add("Joe");
+//  System.out.println(dyn);
+//  dyn.add("Mag");
+//  dyn.add("Alan");
+//  System.out.println(dyn);
+//  dyn.remove(2);
+//  System.out.println(dyn);
+//  dyn.removeLast();
+//  System.out.println(dyn);
+//  System.out.println(dyn.get(0));
 
 //  ll.isEmpty();
 //  ll.addFirst("Mag");
